@@ -14,7 +14,7 @@ class PostsViewModel (val postRepository: PostRepository):ViewModel() {
     fun getPosts() {
         viewModelScope.launch {
             val response = postRepository.getPosts()
-            if (response.isSuccessful) {
+            if (!response.isSuccessful) {
                 postsLiveData.postValue(response.body())
             } else {
                 postsFailedLiveData.postValue(response.errorBody()?.string())
@@ -22,5 +22,9 @@ class PostsViewModel (val postRepository: PostRepository):ViewModel() {
 
         }
     }
+    fun getDbPosts(){
+
+    }
+
 
 }
